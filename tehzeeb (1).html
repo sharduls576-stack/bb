@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>For Tehzeeb 💗</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #ffe8f0 0%, #fff0f7 100%);
+    -webkit-font-smoothing: antialiased;
+    -webkit-touch-callout: none;
+  }
+
+  .bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  #landing {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .miss-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    border-radius: 36px;
+    padding: 42px 44px 40px;
+    text-align: center;
+    box-shadow: 
+      0 0 40px rgba(255, 182, 210, 0.15),
+      0 20px 80px rgba(210, 100, 140, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 200, 220, 0.6);
+    max-width: 460px;
+    width: 90%;
+    animation: cardPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  @keyframes cardPop {
+    0% {
+      opacity: 0;
+      transform: scale(0.6) translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .kitty-icon {
+    font-size: 56px;
+    margin-bottom: 6px;
+    display: block;
+    animation: bounce 2.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-12px) scale(1.05); }
+  }
+
+  .miss-card h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    background: linear-gradient(135deg, #d94d80, #c94d7a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+
+  .miss-card h1 span {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .heart-big {
+    font-size: 3.2rem;
+    margin: 14px 0 16px;
+    display: block;
+    animation: heartbeat 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1); }
+  }
+
+  .miss-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #d94d80;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 32px;
+    letter-spacing: -0.3px;
+  }
+
+  .btn-yes {
+    padding: 15px 32px;
+    border-radius: 28px;
+    border: none;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    background: linear-gradient(135deg, #ff6b9d, #d94d80);
+    color: white;
+    box-shadow: 
+      0 8px 24px rgba(201, 77, 122, 0.35),
+      0 0 1px rgba(255, 255, 255, 0.5) inset;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    letter-spacing: 0.3px;
+  }
+
+  .btn-yes:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+      0 12px 32px rgba(201, 77, 122, 0.45),
+      0 0 1px rgba(255, 255, 255, 0.5) inset;
+  }
+
+  .btn-yes:active {
+    transform: translateY(-1px) scale(1.02);
+  }
+
+  /* The runaway button */
+  #btn-no {
+    position: fixed;
+    padding: 13px 24px;
+    border-radius: 26px;
+    border: 2.5px solid #ffb8d6;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.9);
+    color: #d94d80;
+    box-shadow: 
+      0 6px 20px rgba(201, 77, 122, 0.2),
+      0 0 1px rgba(255, 255, 255, 0.8) inset;
+    z-index: 9999;
+    transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                top 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.2s ease;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    letter-spacing: 0.2px;
+    will-change: left, top;
+  }
+
+  #btn-no:hover {
+    transform: scale(1.08);
+    box-shadow: 
+      0 8px 28px rgba(201, 77, 122, 0.3),
+      0 0 1px rgba(255, 255, 255, 0.8) inset;
+  }
+
+  /* CELEBRATION */
+  #celebration {
+    display: none;
+    position: fixed;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+
+  #celebration.show {
+    display: flex;
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .celeb-card {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(20px);
+    border-radius: 40px;
+    padding: 48px 48px 44px;
+    text-align: center;
+    box-shadow: 
+      0 0 50px rgba(255, 182, 210, 0.2),
+      0 24px 96px rgba(210, 100, 140, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 200, 220, 0.6);
+    max-width: 520px;
+    width: 90%;
+    animation: celebPop 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  @keyframes celebPop {
+    0% {
+      opacity: 0;
+      transform: scale(0.5) translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .celeb-card h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    background: linear-gradient(135deg, #ff6b9d, #d94d80);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 16px 0 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .celeb-accept {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #d94d80;
+    margin: 12px 0 24px;
+    letter-spacing: -0.2px;
+  }
+
+  .icons-row {
+    font-size: 2.2rem;
+    letter-spacing: 10px;
+    margin: 20px 0;
+    animation: shimmer 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { transform: scale(1) translateY(0); opacity: 1; }
+    50% { transform: scale(1.08) translateY(-4px); opacity: 0.9; }
+  }
+
+  /* Confetti */
+  .confetti-piece {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    top: -20px;
+    animation: confettiFall linear forwards;
+    pointer-events: none;
+    z-index: 99;
+  }
+
+  @keyframes confettiFall {
+    0% {
+      transform: translateY(0) rotate(0deg) translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh) rotate(720deg) translateX(var(--tx));
+      opacity: 0;
+    }
+  }
+
+  /* Floating hearts */
+  .float-heart {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    animation: floatUp linear forwards;
+    opacity: 0.6;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-110vh) translateX(var(--tx));
+      opacity: 0;
+    }
+  }
+
+  /* Paw prints */
+  .paw {
+    position: fixed;
+    pointer-events: none;
+    z-index: 98;
+    opacity: 0;
+    animation: pawShow 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes pawShow {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .miss-card {
+      padding: 36px 32px 32px;
+      border-radius: 28px;
+    }
+    
+    .miss-card h1 {
+      font-size: 2.1rem;
+    }
+    
+    .miss-text {
+      font-size: 1.3rem;
+    }
+    
+    .btn-yes {
+      padding: 13px 28px;
+      font-size: 0.9rem;
+    }
+
+    .celeb-card {
+      padding: 40px 36px 36px;
+      border-radius: 32px;
+    }
+
+    .celeb-card h1 {
+      font-size: 2.3rem;
+    }
+
+    .celeb-accept {
+      font-size: 1.1rem;
+    }
+
+    .icons-row {
+      font-size: 1.8rem;
+      letter-spacing: 6px;
+    }
+
+    #btn-no {
+      padding: 11px 20px;
+      font-size: 0.85rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-canvas">
+  <svg width="100%" height="100%" viewBox="0 0 1000 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Top-left hydrangea -->
+  <g transform="translate(80,80) translate(0,0) scale(1.1)">
+    <g transform="rotate(0)translate(22,0)"><ellipse rx="13" ry="9" fill="#d4b8f0" opacity="0.7"/></g>
+    <g transform="rotate(45)translate(22,0)"><ellipse rx="13" ry="9" fill="#b39ddb" opacity="0.65"/></g>
+    <g transform="rotate(90)translate(22,0)"><ellipse rx="13" ry="9" fill="#c9a8e8" opacity="0.7"/></g>
+    <g transform="rotate(135)translate(22,0)"><ellipse rx="13" ry="9" fill="#b39ddb" opacity="0.65"/></g>
+    <g transform="rotate(180)translate(22,0)"><ellipse rx="13" ry="9" fill="#d4b8f0" opacity="0.7"/></g>
+    <g transform="rotate(225)translate(22,0)"><ellipse rx="13" ry="9" fill="#b39ddb" opacity="0.65"/></g>
+    <g transform="rotate(270)translate(22,0)"><ellipse rx="13" ry="9" fill="#c9a8e8" opacity="0.7"/></g>
+    <g transform="rotate(315)translate(22,0)"><ellipse rx="13" ry="9" fill="#b39ddb" opacity="0.65"/></g>
+    <circle r="8" fill="#e5d4f7"/>
+  </g>
+  
+  <!-- Top-right peony -->
+  <g transform="translate(920,80) translate(-70,0) scale(0.9)">
+    <g transform="rotate(0)translate(28,0)"><ellipse rx="18" ry="12" fill="#ffb8d6" opacity="0.8"/></g>
+    <g transform="rotate(36)translate(28,0)"><ellipse rx="18" ry="12" fill="#ff99b9" opacity="0.8"/></g>
+    <g transform="rotate(72)translate(28,0)"><ellipse rx="18" ry="12" fill="#ffb8d6" opacity="0.8"/></g>
+    <g transform="rotate(108)translate(28,0)"><ellipse rx="18" ry="12" fill="#ff99b9" opacity="0.8"/></g>
+    <g transform="rotate(144)translate(28,0)"><ellipse rx="18" ry="12" fill="#ffb8d6" opacity="0.8"/></g>
+    <g transform="rotate(180)translate(28,0)"><ellipse rx="18" ry="12" fill="#ff99b9" opacity="0.8"/></g>
+    <g transform="rotate(216)translate(28,0)"><ellipse rx="18" ry="12" fill="#ffb8d6" opacity="0.8"/></g>
+    <g transform="rotate(252)translate(28,0)"><ellipse rx="18" ry="12" fill="#ff99b9" opacity="0.8"/></g>
+    <g transform="rotate(288)translate(28,0)"><ellipse rx="18" ry="12" fill="#ffb8d6" opacity="0.8"/></g>
+    <g transform="rotate(324)translate(28,0)"><ellipse rx="18" ry="12" fill="#ff99b9" opacity="0.8"/></g>
+    <circle r="12" fill="#ffe5f0"/>
+  </g>
+
+  <!-- Bottom-left peony -->
+  <g transform="translate(80,750) translate(0,-70) scale(1.0)">
+    <g transform="rotate(0)translate(28,0)"><ellipse rx="18" ry="12" fill="#ffb8d6" opacity="0.75"/></g>
+    <g transform="rotate(60)translate(28,0)"><ellipse rx="18" ry="12" fill="#ff99b9" opacity="0.75"/></g>
+    <g transform="rotate(120)translate(28,0)"><ellipse rx="18" ry="12" fill="#ffb8d6" opacity="0.75"/></g>
+    <g transform="rotate(180)translate(28,0)"><ellipse rx="18" ry="12" fill="#ff99b9" opacity="0.75"/></g>
+    <g transform="rotate(240)translate(28,0)"><ellipse rx="18" ry="12" fill="#ffb8d6" opacity="0.75"/></g>
+    <g transform="rotate(300)translate(28,0)"><ellipse rx="18" ry="12" fill="#ff99b9" opacity="0.75"/></g>
+    <circle r="11" fill="#ffe5f0"/>
+  </g>
+
+  <!-- Bottom-right hydrangea -->
+  <g transform="translate(950,750) translate(-70,-70) scale(1.05)">
+    <g transform="rotate(0)translate(22,0)"><ellipse rx="13" ry="9" fill="#d4b8f0" opacity="0.6"/></g>
+    <g transform="rotate(45)translate(22,0)"><ellipse rx="13" ry="9" fill="#b39ddb" opacity="0.6"/></g>
+    <g transform="rotate(90)translate(22,0)"><ellipse rx="13" ry="9" fill="#c9a8e8" opacity="0.6"/></g>
+    <g transform="rotate(135)translate(22,0)"><ellipse rx="13" ry="9" fill="#b39ddb" opacity="0.6"/></g>
+    <g transform="rotate(180)translate(22,0)"><ellipse rx="13" ry="9" fill="#d4b8f0" opacity="0.6"/></g>
+    <g transform="rotate(225)translate(22,0)"><ellipse rx="13" ry="9" fill="#b39ddb" opacity="0.6"/></g>
+    <g transform="rotate(270)translate(22,0)"><ellipse rx="13" ry="9" fill="#c9a8e8" opacity="0.6"/></g>
+    <g transform="rotate(315)translate(22,0)"><ellipse rx="13" ry="9" fill="#b39ddb" opacity="0.6"/></g>
+    <circle r="8" fill="#e5d4f7"/>
+  </g>
+
+  <!-- Decorative leaves -->
+  <ellipse cx="140" cy="120" rx="22" ry="8" fill="#a8d5b5" opacity="0.35" transform="rotate(-30,140,120)"/>
+  <ellipse cx="880" cy="150" rx="20" ry="7" fill="#a8d5b5" opacity="0.3" transform="rotate(25,880,150)"/>
+  <ellipse cx="100" cy="700" rx="18" ry="7" fill="#a8d5b5" opacity="0.35" transform="rotate(40,100,700)"/>
+  <ellipse cx="920" cy="680" rx="20" ry="7" fill="#a8d5b5" opacity="0.3" transform="rotate(-20,920,680)"/>
+
+  <!-- Soft sparkles -->
+  <circle cx="150" cy="100" r="4" fill="#ffe5f0" opacity="0.6"/>
+  <circle cx="800" cy="80" r="3" fill="#e5d4f7" opacity="0.5"/>
+  <circle cx="120" cy="750" r="3.5" fill="#ffe5f0" opacity="0.6"/>
+  <circle cx="880" cy="760" r="3" fill="#e5d4f7" opacity="0.5"/>
+</svg>
+</div>
+
+<!-- LANDING PAGE -->
+<div id="landing">
+  <div class="miss-card">
+    <span class="kitty-icon">🐱</span>
+    <h1><span>Tehzeeb</span> 🌸</h1>
+    <span class="heart-big">💗</span>
+    <p class="miss-text">I miss you</p>
+    <button class="btn-yes" onclick="showCelebration()">Okay, I know you miss me more 🥹</button>
+  </div>
+</div>
+
+<!-- The runaway button -->
+<button id="btn-no">No, I miss you more!</button>
+
+<!-- CELEBRATION PAGE -->
+<div id="celebration">
+  <div class="celeb-card">
+    <div style="font-size:4.5rem;animation:bounce 2.2s cubic-bezier(0.68,-0.55,0.265,1.55) infinite;">🌸</div>
+    <h1>Yayyyy!! 🎉</h1>
+    <div class="icons-row">🐱 💗 🌺 🎀 💜</div>
+    <p class="celeb-accept">you accept 🥹</p>
+    <div style="margin:20px 0;animation:bounce 2.2s cubic-bezier(0.68,-0.55,0.265,1.55) infinite;animation-delay:0.2s;">
+      <svg width="120" height="120" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="55" cy="58" rx="40" ry="38" fill="white" stroke="#ff99b9" stroke-width="2.5"/>
+        <polygon points="22,30 15,8 38,22" fill="white" stroke="#ff99b9" stroke-width="2.5"/>
+        <polygon points="88,30 95,8 72,22" fill="white" stroke="#ff99b9" stroke-width="2.5"/>
+        <ellipse cx="85" cy="26" rx="10" ry="7" fill="#ff6b9d" transform="rotate(-30,85,26)"/>
+        <ellipse cx="95" cy="20" rx="10" ry="7" fill="#ff6b9d" transform="rotate(-30,95,20)"/>
+        <circle cx="90" cy="23" r="5" fill="#ff3d77"/>
+        <ellipse cx="43" cy="56" rx="5" ry="6" fill="#2a2a2a"/>
+        <ellipse cx="67" cy="56" rx="5" ry="6" fill="#2a2a2a"/>
+        <ellipse cx="55" cy="68" rx="4" ry="3" fill="#ffb8d6"/>
+        <line x1="18" y1="62" x2="46" y2="65" stroke="#ddd" stroke-width="1.5"/>
+        <line x1="18" y1="68" x2="46" y2="68" stroke="#ddd" stroke-width="1.5"/>
+        <line x1="92" y1="62" x2="64" y2="65" stroke="#ddd" stroke-width="1.5"/>
+        <line x1="92" y1="68" x2="64" y2="68" stroke="#ddd" stroke-width="1.5"/>
+        <ellipse cx="35" cy="73" rx="8" ry="5" fill="#ffb8d6" opacity="0.7"/>
+        <ellipse cx="75" cy="73" rx="8" ry="5" fill="#ffb8d6" opacity="0.7"/>
+      </svg>
+    </div>
+    <div style="font-size:1.8rem;letter-spacing:6px;margin-top:12px;">💐🎀🌷🐾🌸</div>
+  </div>
+</div>
+
+<script>
+  // Floating hearts with random drift
+  function spawnHeart() {
+    const h = document.createElement('div');
+    h.className = 'float-heart';
+    h.textContent = ['💗','🌸','💜','🌺','💕','🌷','🌼','✨'][Math.floor(Math.random()*8)];
+    const startX = Math.random() * 100;
+    h.style.left = startX + 'vw';
+    h.style.bottom = '-2rem';
+    h.style.fontSize = (0.8 + Math.random()*1.2) + 'rem';
+    const duration = 7 + Math.random()*6;
+    h.style.animationDuration = duration + 's';
+    const drift = (Math.random() - 0.5) * 20;
+    h.style.setProperty('--tx', drift + 'vw');
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), duration * 1000);
+  }
+  setInterval(spawnHeart, 1200);
+  for(let i=0;i<5;i++) setTimeout(spawnHeart, i*400);
+
+  // Runaway button logic
+  const btn = document.getElementById('btn-no');
+  let runCount = 0;
+  const messages = [
+    "Nope! 🐾",
+    "Too slow! 😹",
+    "Catch me~",
+    "Nuh-uh! 💨",
+    "Not today!",
+    "Hehe~ 🌸",
+    "Nice try!",
+    "Zoom! 🐱",
+    "Oops! 🏃",
+    "Meow~ 💕"
+  ];
+
+  function placeInitial() {
+    const bw = btn.offsetWidth;
+    const bh = btn.offsetHeight;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    btn.style.left = Math.round((vw - bw) / 2) + 'px';
+    btn.style.top = Math.round(vh * 0.72) + 'px';
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', placeInitial);
+  } else {
+    placeInitial();
+  }
+  window.addEventListener('resize', placeInitial);
+
+  function runAway(e) {
+    e.preventDefault();
+    btn.textContent = messages[runCount % messages.length];
+    runCount++;
+
+    const bw = btn.offsetWidth;
+    const bh = btn.offsetHeight;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    const curL = parseFloat(btn.style.left) || vw/2;
+    const curT = parseFloat(btn.style.top) || vh/2;
+
+    const pad = 15;
+    const maxL = vw - bw - pad;
+    const maxT = vh - bh - pad;
+
+    let nx, ny, attempts = 0;
+    do {
+      nx = pad + Math.random() * (maxL - pad);
+      ny = pad + Math.random() * (maxT - pad);
+      attempts++;
+    } while (attempts < 50 && Math.hypot(nx - curL, ny - curT) < 120);
+
+    btn.style.left = nx + 'px';
+    btn.style.top = ny + 'px';
+
+    spawnPaw(e);
+  }
+
+  function spawnPaw(e) {
+    const p = document.createElement('div');
+    p.className = 'paw';
+    p.textContent = '🐾';
+    p.style.fontSize = '1.4rem';
+    
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) || window.innerWidth/2;
+    const y = (e.touches ? e.touches[0].clientY : e.clientY) || window.innerHeight/2;
+    
+    p.style.left = (x - 12) + 'px';
+    p.style.top = (y - 12) + 'px';
+    p.style.zIndex = '9998';
+    
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 1500);
+  }
+
+  // Event listeners for runaway button
+  btn.addEventListener('mouseenter', runAway);
+  btn.addEventListener('touchstart', runAway, { passive: false });
+
+  // Celebration
+  function showCelebration() {
+    document.getElementById('landing').style.display = 'none';
+    btn.style.display = 'none';
+    document.getElementById('celebration').classList.add('show');
+    launchConfetti();
+  }
+
+  function launchConfetti() {
+    const colors = ['#ffb8d6','#e5d4f7','#ffe5f0','#d4b8f0','#ff99b9','#a8d5b5','#ffd9e8'];
+    for(let i=0; i<100; i++) {
+      setTimeout(() => {
+        const c = document.createElement('div');
+        c.className = 'confetti-piece';
+        c.style.left = Math.random()*100 + 'vw';
+        c.style.background = colors[Math.floor(Math.random()*colors.length)];
+        c.style.width = (6+Math.random()*10) + 'px';
+        c.style.height = (6+Math.random()*10) + 'px';
+        c.style.borderRadius = Math.random()>0.5?'50%':'2px';
+        const duration = 2.8 + Math.random()*3;
+        c.style.animationDuration = duration + 's';
+        const tx = (Math.random() - 0.5) * 30;
+        c.style.setProperty('--tx', tx + 'vw');
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), duration * 1000);
+      }, i*30);
+    }
+  }
+</script>
+
+</body>
+</html>
